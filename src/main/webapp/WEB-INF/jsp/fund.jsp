@@ -6,13 +6,10 @@
 
 <c:set var='test'  value='rowan' scope="session"/>
 
-
-<h1>Hello world</h1> <br>
-
     <h1>${test}</h1>
 
     <c:forEach items = "${wishlist}" var = "wish">
-        <c:out value = "${wish.code}"/>
+        <c:out value = "${wish.code} , "/>
     </c:forEach>
 
 
@@ -24,13 +21,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 
-        <script src="/highstock.js"></script>
+        <script src="${pageContext.request.contextPath}/highstock.js"></script>
 
-        <script src="/exporting.js"></script>
-        <script src="/jquery.min.js"></script>
-        <script src="/ema.js"></script>
-        <script src="/rsi.js"></script>
-        <script src="/indicators.js"></script>
+        <script src="${pageContext.request.contextPath}/exporting.js"></script>
+        <script src="${pageContext.request.contextPath}/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/ema.js"></script>
+        <script src="${pageContext.request.contextPath}/rsi.js"></script>
+        <script src="${pageContext.request.contextPath}/indicators.js"></script>
 
 
         <script type="text/javascript">
@@ -115,7 +112,6 @@
 
 
 
-                            console.log('xx');
                             var seriesOptions = [];
 
                             for(var i = 0; i < data.length; i++){
@@ -143,7 +139,12 @@
 
 
                             });
-                            chart.xAxis[0].setTitle({ text: "${wish.code}" });
+
+                            var title = "${wish.code} :   "  +  (data[data.length-1].changepercent * 100 )  + " %";
+                         //   console.log(title);
+                        //    chart.xAxis[0].setTitle({ text: "${wish.code} " }   );
+                            chart.xAxis[0].setTitle( { text: title }     );
+
                             chart.redraw();
 
 
