@@ -11,9 +11,7 @@ public class WebUtility {
  @Value("${rest.url}") String resturl;
 
     public  URI  getURI(String path, Map<String,String> query){
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(resturl).path("/"+path);
-        builder.query("a={a1}");
-        builder.query("b={b1}");
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(resturl+path);
         if(query != null ) {
             query.forEach((a, b) -> {
                 builder.queryParam(a, b);
