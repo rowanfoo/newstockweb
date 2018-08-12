@@ -16,9 +16,10 @@ import java.net.URI;
 @Controller
 @RequestMapping("/stock")
 public class CoreFundController {
-    String path="/stock";
+String path="/stock";
     @Autowired RestTemplate rest;
     @Autowired WebUtility webUtility;
+    @Value("${rest.url}") String resturl;
 
     @GetMapping("/fav")
     @CrossOrigin
